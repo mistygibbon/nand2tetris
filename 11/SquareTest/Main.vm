@@ -1,0 +1,8 @@
+function Main.main 1
+push constant 0
+push constant 0
+push constant 30
+call Square.new 3
+pop local 0
+push constant 0
+return

@@ -1,0 +1,11 @@
+function Sys.init 0
+call SimpleFunction.test 0
+call SimpleFunction.test 0
+add
+return
+
+function SimpleFunction.test 0
+push constant 1
+push constant 2
+add
+return

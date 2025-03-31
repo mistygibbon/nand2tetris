@@ -1,0 +1,169 @@
+class Game{
+    field Array data;
+    field int turnCount;
+
+    constructor Game new(){
+        var Int i;
+
+        let turnCount = 1;
+        let data = Array.new(9);
+
+        let i = 0;
+        while (i<9){
+            let data[i] = 0;
+            let i = i+1;
+        }
+
+        return this;
+    }
+
+    method int getTurnCount(){
+        return turnCount;
+    }
+
+    method void round(){
+        var int input;
+        var bool invalidInput;
+
+        if (Game.isOdd(turnCount)){
+            do Output.printString("It is player 1 turn");
+            do Output.println();
+        } else {
+            do Output.printString("It is player 2 turn");
+            do Output.println();
+        }
+
+        let invalidInput = true;
+
+        while (invalidInput){
+                let input = Keyboard.readInt("Please input a location from 1 to 9: ");
+                if ((data[input - 1] = 0)&(input>0)&(input<10)){
+                    let invalidInput = false;
+                } else {
+                    do Output.printString("Invalid input");
+                    do Output.println();
+                }
+        }
+
+        if (Game.isOdd(turnCount)){
+            let data[input - 1] = 1;
+        } else {
+            let data[input - 1] = 2;
+        }
+
+        let turnCount = turnCount + 1;
+        return;
+    }
+
+    method void print(){
+        var int i;
+        var int j;
+
+        let i = 0;
+        let j = 0;
+
+        while (i<3){
+            do Output.printString("|");
+            while (j<3){
+                do Output.printString(Game.translateData(data[3*i + j]));
+                do Output.printString("|");
+                let j = j + 1;
+            }
+            do Output.println();
+            let j = 0;
+            let i = i + 1;
+        }
+         
+        return;
+    }
+
+    method int win(){
+        if ((data[0]=data[1]) & (data[1] = data[2])){
+            if ((data[0]=1)|(data[0]=2)){
+                return data[0];
+            }
+        }
+
+        if ((data[3] = data[4]) & (data[4] = data[5])){
+            if ((data[3]=1)|(data[3]=2)){
+                return data[3];
+            }
+        }
+
+        if ((data[6]=data[7]) & (data[7]=data[8])){
+            if ((data[6]=1)|(data[6]=2)){
+                return data[6];
+            }
+        }
+
+        if ((data[0]=data[3]) & (data[3] = data[6])){
+            if ((data[0]=1)|(data[0]=2)){
+                return data[0];
+            }
+        }
+        if ((data[1]=data[4]) & (data[4]=data[7])){
+            if ((data[1]=1)|(data[1]=2)){
+                return data[1];
+            }
+        }
+        if ((data[2]=data[5]) & (data[5]=data[8])){
+            if ((data[2]=1)|(data[2]=2)){
+                return data[2];
+            }
+        }
+
+        if ((data[0]=data[4]) & (data[4] = data[8])){
+            if ((data[0]=1)|(data[0]=2)){
+                return data[0];
+            }
+        }
+        if ((data[2]=data[4]) & (data[4] = data[6])){
+            if ((data[2]=1)|(data[2]=2)){
+                return data[2];
+            }
+        }
+
+        return 0;
+    }
+
+
+
+    function String translateData(int element){
+        if (element = 0){
+            return " ";
+        }
+        if (element = 1){
+            return "X";
+        }
+        if (element = 2){
+            return "O";
+        }
+        return " ";
+    }
+
+    function boolean isOdd(int num){
+        var int a1;
+        var int a2;
+
+        var int c1;
+        var int c2;
+
+        let a1 = num;
+        let a2 = num + 1;
+
+        let c1 = 0;
+        let c2 = 0;
+
+        while (a1>0){
+            let a1 = a1 - 2;
+            let c1 = c1 + 1;
+        }
+
+        while (a2>0){
+            let a2 = a2 - 2;
+            let c2 = c2 + 1;
+        }
+
+        return (c1=c2);
+    }
+}

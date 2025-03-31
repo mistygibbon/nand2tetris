@@ -1,0 +1,23 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/12/MathTest/Main.jack
+
+/** Test program for the OS Math class. */
+class Main {
+
+    /** Performs various mathematical operations, using calls to the Math class methods. */
+    function void main() {
+        var int x;
+        let x = 10;
+        do Main.inc(x);
+        do Output.printInt(x);
+        return;
+    }
+
+    function void inc(int x){
+        let x = x + 1;
+        return;
+    }
+
+}
